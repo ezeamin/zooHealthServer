@@ -1,6 +1,9 @@
 const express = require("express");
 const passport = require("passport");
 const router = express.Router();
+const path = require("path");
+
+const publicPath = path.join(__dirname, "../public");
 
 router.post("/signup", (req, res) => {
   console.log(req.body);
@@ -15,7 +18,7 @@ router.post("/signup", (req, res) => {
   })(req, res);
 });
 
-router.post("/login", (req, res) => {
+router.post("/signin", (req, res) => {
   passport.authenticate("local-login", {
     successRedirect: "/success",
     failureRedirect: "/error",
@@ -44,6 +47,10 @@ const isAuthenticated = (req, res, next) => {
 
 router.get("/auth", isAuthenticated, (req, res) => {
   res.status(200).json({ user: req.user, code: 0 });
+});
+
+router.get("*",(req,res)=>{
+  res.sendFile(path.join(publicPath, 'index.html'))
 });
 
 module.exports = router;

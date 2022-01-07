@@ -25,7 +25,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-
+/*
 app.use((req, res, next) => {
   const allowedOrigins = ['http://localhost:3000', 'https://zoohealth.netlify.app/'];
   const origin = req.headers.origin;
@@ -37,7 +37,7 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.header('Access-Control-Allow-Credentials', true);
   return next();
-});
+});*/
 
 //routes
 app.use(routes);
